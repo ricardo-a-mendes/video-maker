@@ -1,0 +1,15 @@
+{
+    "name": "mendes/video-maker",
+    "description": "Automated Video Maker for Youtube",
+    "type": "project",
+    "require": {
+        "symfony/console": "^5.1"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ricardo",
+            "email": "ricardo@machobear.ca"
+        }
+    ]
+}
