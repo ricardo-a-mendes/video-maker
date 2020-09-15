@@ -11,5 +11,10 @@
             "name": "Ricardo",
             "email": "ricardo@machobear.ca"
         }
-    ]
+    ],
+    "autoload": {
+        "psr-4": {
+            "VMaker\\": "src/"
+        }
+    }
 }
