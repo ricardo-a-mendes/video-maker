@@ -16,7 +16,7 @@ class Content
     /** @var string */
     private $sourceContentSanitized;
 
-    /** @var Sentences */
+    /** @var Sentence[] */
     private $sentences;
 
     /**
@@ -96,21 +96,32 @@ class Content
     }
 
     /**
-     * @return Sentences
+     * @return Sentence[]
      */
-    public function getSentences(): Sentences
+    public function getSentences(): array
     {
         return $this->sentences;
     }
 
     /**
-     * @param Sentences $sentences
+     * @param Sentence[] $sentences
      *
      * @return Content
      */
-    public function setSentences(Sentences $sentences): Content
+    public function setSentences(array $sentences): Content
     {
         $this->sentences = $sentences;
+        return $this;
+    }
+
+    /**
+     * @param Sentence $sentence
+     *
+     * @return Content
+     */
+    public function addSentence(Sentence $sentence): Content
+    {
+        $this->sentences[] = $sentence;
         return $this;
     }
 }

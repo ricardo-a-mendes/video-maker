@@ -2,14 +2,16 @@
 
 namespace VMaker\Integration;
 
-class AlgorithmiaResponse
+use stdClass;
+
+class AlgorithmiaWikipediaParserResponse
 {
     private $title;
     private $content;
 
-    public static function create(\stdClass $algorithmiaResponse): AlgorithmiaResponse
+    public static function create(stdClass $algorithmiaResponse): AlgorithmiaWikipediaParserResponse
     {
-        return (new AlgorithmiaResponse())
+        return (new AlgorithmiaWikipediaParserResponse())
             ->setTitle($algorithmiaResponse->title)
             ->setContent($algorithmiaResponse->content);
     }
@@ -25,7 +27,7 @@ class AlgorithmiaResponse
     /**
      * @param mixed $title
      *
-     * @return AlgorithmiaResponse
+     * @return AlgorithmiaWikipediaParserResponse
      */
     public function setTitle($title)
     {
@@ -44,7 +46,7 @@ class AlgorithmiaResponse
     /**
      * @param mixed $content
      *
-     * @return AlgorithmiaResponse
+     * @return AlgorithmiaWikipediaParserResponse
      */
     public function setContent($content)
     {

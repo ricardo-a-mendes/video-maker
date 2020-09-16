@@ -2,7 +2,7 @@
 
 namespace VMaker\Data;
 
-class Sentences
+class Sentence
 {
     /** @var string */
     private $text;
@@ -24,9 +24,9 @@ class Sentences
     /**
      * @param string $text
      *
-     * @return Sentences
+     * @return Sentence
      */
-    public function setText(string $text): Sentences
+    public function setText(string $text): Sentence
     {
         $this->text = $text;
         return $this;
@@ -43,9 +43,9 @@ class Sentences
     /**
      * @param string $keywords
      *
-     * @return Sentences
+     * @return Sentence
      */
-    public function setKeywords(string $keywords): Sentences
+    public function setKeywords(string $keywords): Sentence
     {
         $this->keywords = $keywords;
         return $this;
@@ -62,9 +62,9 @@ class Sentences
     /**
      * @param array $images
      *
-     * @return Sentences
+     * @return Sentence
      */
-    public function setImages(array $images): Sentences
+    public function setImages(array $images): Sentence
     {
         $this->images = $images;
         return $this;

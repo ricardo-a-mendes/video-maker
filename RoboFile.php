@@ -1,17 +1,22 @@
 <?php
 
+use Robo\Tasks;
 use Symfony\Component\Console\Question\ChoiceQuestion;
+use VMaker\Data\Content;
+use VMaker\Data\Sentence;
+use VMaker\Robots\TextRobot;
 
 /**
  * This is project's console commands configuration for Robo task runner.
  *
  * @see http://robo.li/
  */
-class RoboFile extends \Robo\Tasks
+class RoboFile extends Tasks
 {
     public function videoCreate()
     {
-        $dataContent = new \VMaker\Data\Content();
+        $dataContent = new Content();
+        $textRobot = new TextRobot();
 
         //Requesting the term to be searched
         $wikiSearchTerm = $this->ask('Type a Wikipedia search term: ');
@@ -27,10 +32,20 @@ class RoboFile extends \Robo\Tasks
         $dataContent->setPrefix($wikiSearchPrefix);
 
         //Search on wikipedia
-        $textRobot = new \VMaker\Robots\TextRobot();
         $algorithmiaResponse = $textRobot->fetchContentFromWikipedia($wikiSearchTerm);
         $dataContent->setSourceContentOriginal($algorithmiaResponse->getContent());
 
-        $this->writeln($algorithmiaResponse->getTitle());
+        //Sanitizing wikipedia text
+        $sanitized = $textRobot->sanitizeContent($dataContent->getSourceContentOriginal());
+        $dataContent->setSourceContentSanitized($sanitized);
+
+        $sentences = $textRobot->breakContentIntoSentences($dataContent->getSourceContentSanitized());
+        foreach ($sentences as $sentence) {
+            $s = (new Sentence())
+                ->setText($sentence);
+            $dataContent->addSentence($s);
+        }
+
+        $this->writeln('Done');
     }
 }
