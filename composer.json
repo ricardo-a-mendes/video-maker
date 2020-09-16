@@ -3,7 +3,9 @@
     "description": "Automated Video Maker for Youtube",
     "type": "project",
     "require": {
-        "consolidation/robo": "^2.2"
+        "consolidation/robo": "^2.2",
+        "algorithmia/algorithmia": "^1.0",
+        "ext-json": "*"
     },
     "license": "MIT",
     "authors": [
