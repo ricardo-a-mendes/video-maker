@@ -40,6 +40,9 @@ services:
       build: phpdocker/php-fpm
       container_name: video-maker-php-fpm
       working_dir: /application
+      environment:
+        - XDEBUG_CONFIG=remote_host=host.docker.internal remote_enable=1 remote_port=9000 remote_connect_back=0
+        - PHP_IDE_CONFIG=serverName=VMaker
       volumes:
         - .:/application
         - ./phpdocker/php-fpm/php-ini-overrides.ini:/etc/php/7.4/fpm/conf.d/99-overrides.ini
