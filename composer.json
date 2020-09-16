@@ -3,7 +3,7 @@
     "description": "Automated Video Maker for Youtube",
     "type": "project",
     "require": {
-        "symfony/console": "^5.1"
+        "consolidation/robo": "^2.2"
     },
     "license": "MIT",
     "authors": [
