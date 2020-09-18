@@ -29,7 +29,7 @@ class AlgorithmiaWikipediaParserResponse
      *
      * @return AlgorithmiaWikipediaParserResponse
      */
-    public function setTitle($title)
+    protected function setTitle($title)
     {
         $this->title = $title;
         return $this;
@@ -48,7 +48,7 @@ class AlgorithmiaWikipediaParserResponse
      *
      * @return AlgorithmiaWikipediaParserResponse
      */
-    public function setContent($content)
+    protected function setContent($content)
     {
         $this->content = $content;
         return $this;

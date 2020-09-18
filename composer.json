@@ -1,22 +1,23 @@
 {
-    "name": "mendes/video-maker",
-    "description": "Automated Video Maker for Youtube",
-    "type": "project",
-    "require": {
-        "consolidation/robo": "^2.2",
-        "algorithmia/algorithmia": "^1.0",
-        "ext-json": "*"
-    },
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Ricardo",
-            "email": "ricardo@machobear.ca"
-        }
-    ],
-    "autoload": {
-        "psr-4": {
-            "VMaker\\": "src/"
-        }
+  "name": "mendes/video-maker",
+  "description": "Automated Video Maker for Youtube",
+  "type": "project",
+  "require": {
+    "consolidation/robo": "^2.2",
+    "algorithmia/algorithmia": "^1.0",
+    "ext-json": "*",
+    "ext-curl": "*"
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Ricardo",
+      "email": "ricardo@machobear.ca"
     }
+  ],
+  "autoload": {
+    "psr-4": {
+      "VMaker\\": "src/"
+    }
+  }
 }

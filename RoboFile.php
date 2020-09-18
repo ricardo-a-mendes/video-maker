@@ -40,10 +40,16 @@ class RoboFile extends Tasks
         $dataContent->setSourceContentSanitized($sanitized);
 
         $sentences = $textRobot->breakContentIntoSentences($dataContent->getSourceContentSanitized());
-        foreach ($sentences as $sentence) {
+        foreach ($sentences as $i => $sentence) {
+            $sentenceKeywords = $textRobot->fetchKeywords($sentence);
             $s = (new Sentence())
-                ->setText($sentence);
+                ->setText($sentence)
+                ->setKeywords(json_encode($sentenceKeywords->getKeywords()));
             $dataContent->addSentence($s);
+
+            if ($i == 3) {
+                break;
+            }
         }
 
         $this->writeln('Done');
