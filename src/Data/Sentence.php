@@ -7,7 +7,7 @@ class Sentence
     /** @var string */
     private $text;
 
-    /** @var string */
+    /** @var array */
     private $keywords;
 
     /** @var array */
@@ -33,19 +33,19 @@ class Sentence
     }
 
     /**
-     * @return string
+     * @return array
      */
-    public function getKeywords(): string
+    public function getKeywords(): array
     {
         return $this->keywords;
     }
 
     /**
-     * @param string $keywords
+     * @param array $keywords
      *
      * @return Sentence
      */
-    public function setKeywords(string $keywords): Sentence
+    public function setKeywords(array $keywords): Sentence
     {
         $this->keywords = $keywords;
         return $this;

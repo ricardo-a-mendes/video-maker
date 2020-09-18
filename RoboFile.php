@@ -44,7 +44,7 @@ class RoboFile extends Tasks
             $sentenceKeywords = $textRobot->fetchKeywords($sentence);
             $s = (new Sentence())
                 ->setText($sentence)
-                ->setKeywords(json_encode($sentenceKeywords->getKeywords()));
+                ->setKeywords($sentenceKeywords->getKeywords());
             $dataContent->addSentence($s);
 
             if ($i == 3) {
