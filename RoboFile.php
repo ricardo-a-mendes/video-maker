@@ -5,6 +5,7 @@ use Symfony\Component\Console\Question\ChoiceQuestion;
 use VMaker\Data\Content;
 use VMaker\Data\Sentence;
 use VMaker\Robots\TextRobot;
+use VMaker\Robots\ImageRobot;
 
 /**
  * This is project's console commands configuration for Robo task runner.
@@ -17,6 +18,7 @@ class RoboFile extends Tasks
     {
         $dataContent = new Content();
         $textRobot = new TextRobot();
+        $imageRobot = new ImageRobot();
 
         //Requesting the term to be searched
         $wikiSearchTerm = $this->ask('Type a Wikipedia search term: ');
@@ -42,9 +44,24 @@ class RoboFile extends Tasks
         $sentences = $textRobot->breakContentIntoSentences($dataContent->getSourceContentSanitized());
         foreach ($sentences as $i => $sentence) {
             $sentenceKeywords = $textRobot->fetchKeywords($sentence);
+
+            $imageTerm = "{$dataContent->getSearchTerm()} {$sentenceKeywords->getKeywords()[0]->text}";
+            $searchResponse = $imageRobot->searchImages($imageTerm);
+
+            $images = [];
+
+            /** @var Google_Service_Customsearch_Result $searchResult */
+            foreach ($searchResponse->getItems() as $searchResult) {
+                $images[] = [
+                    'query' => $imageTerm,
+                    'link' => $searchResult->getLink()
+                ];
+            }
             $s = (new Sentence())
                 ->setText($sentence)
-                ->setKeywords($sentenceKeywords->getKeywords());
+                ->setKeywords($sentenceKeywords->getKeywords())
+                ->setImages($images);
+
             $dataContent->addSentence($s);
 
             if ($i == 3) {
@@ -53,5 +70,10 @@ class RoboFile extends Tasks
         }
 
         $this->writeln('Done');
+    }
+
+    public function videoSearch()
+    {
+
     }
 }

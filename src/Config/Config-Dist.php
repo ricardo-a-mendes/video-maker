@@ -16,6 +16,12 @@ class ConfigDist
     private $ibmCloudNLUURL = '';
     private $ibmCloudNLUVersion = '';
 
+    /*
+     * Google Cloud Platform
+     */
+    private $googleApiKey = '';
+    private $googleSearchEngineId = '';
+
     /**
      * @return string
      */
@@ -52,5 +58,21 @@ class ConfigDist
     public function getIbmCloudNLUVersion(): string
     {
         return $this->ibmCloudNLUVersion;
+    }
+
+    /**
+     * @return string
+     */
+    public function getGoogleApiKey(): string
+    {
+        return $this->googleApiKey;
+    }
+
+    /**
+     * @return string
+     */
+    public function getGoogleSearchEngineId(): string
+    {
+        return $this->googleSearchEngineId;
     }
 }
