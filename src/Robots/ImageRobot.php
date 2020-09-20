@@ -29,7 +29,7 @@ class ImageRobot
                 'q' => $term,
                 'num' => 3,
                 'searchType' => 'image',
-                'rights' => 'cc_publicdomain'
+                //'rights' => 'cc_publicdomain'
             ]
         );
 

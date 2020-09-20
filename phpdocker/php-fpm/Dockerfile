@@ -18,3 +18,7 @@ RUN apt-get update \
 RUN apt-get update \
     && apt-get -y install php-xdebug \
     && apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
+
+RUN apt-get update \
+    && apt-get -y install php-imagick \
+	&& apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
