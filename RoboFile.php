@@ -49,14 +49,27 @@ class RoboFile extends Tasks
             $searchResponse = $imageRobot->searchImages($imageTerm);
 
             $images = [];
+            $downloadedImages = [];
 
             /** @var Google_Service_Customsearch_Result $searchResult */
             foreach ($searchResponse->getItems() as $searchResult) {
+                $linkURL = $searchResult->getLink();
+                if (in_array($linkURL, $downloadedImages)) {
+                    continue;
+                }
+
+                $imagePath = $imageRobot->downloadImage($linkURL);
+                if (is_null($imagePath)) {
+                    continue;
+                }
+
                 $images[] = [
                     'query' => $imageTerm,
-                    'link' => $searchResult->getLink()
+                    'link' => $linkURL,
+                    'saved_path' => $imagePath
                 ];
             }
+
             $s = (new Sentence())
                 ->setText($sentence)
                 ->setKeywords($sentenceKeywords->getKeywords())

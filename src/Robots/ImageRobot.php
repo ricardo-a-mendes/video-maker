@@ -28,10 +28,34 @@ class ImageRobot
                 'cx' => $this->getConfig()->getGoogleSearchEngineId(),
                 'q' => $term,
                 'num' => 3,
-                'searchType' => 'image'
+                'searchType' => 'image',
+                'rights' => 'cc_publicdomain'
             ]
         );
 
         return $resp;
+    }
+
+    /**
+     * Download the image
+     *
+     * @param $url
+     * @param string $aveTo
+     *
+     * @return string|null
+     */
+    public function downloadImage($url, $aveTo = 'images'):?string
+    {
+        $imgInfo = explode('/', $url);
+        $fileName = array_pop($imgInfo);
+
+        $image = file_get_contents($url);
+        if (!$image) {
+            return null;
+        }
+
+        $path = "/application/{$aveTo}/{$fileName}";
+        file_put_contents($path, $image);
+        return $path;
     }
 }
